@@ -1,17 +1,5 @@
 use std::io;
 
-mod words_find{
-    pub fn find_words(words: &Vec<String>, word: &str) -> Vec<String>{
-        let mut result: Vec<String> = Vec::new();
-        for w in words{
-            if w.contains(word){
-                result.push(w.to_string());
-            }
-        }
-        result
-    }
-}
-
 fn main() {
     let mut words = vec![
         "Hermético",
@@ -76,23 +64,14 @@ fn main() {
     ];
     words.sort();
     let mut input = String::new();
-     io::stdin().read_line(&mut input).unwrap();
-    //if words.contains(&input.trim()) {
-    //if words.iter().any(|&i| i == input.trim()) {
-    //println!("{}", words[0]);
-     for i in words.iter() {
-        if words[0].find(input) == input.trim() {
-            println!("{}", i);
+    io::stdin().read_line(&mut input).unwrap();
+    for i in 0..words.len() {
+        if words[i].find(&input[..1]) != None {
+            if words[i].find(&input[1..2]) != None {
+                if words[i].find(&input[2..3]) != None {
+                    println!("{:?} encontrada na posição {} ", words[i], i);
+                }
+            }
         }
-    //let answer = words[0].find("xar");
-    println!("{:?}", answer);
-    // } else {
-    //   println!("NO");
-    //}
-    /*if words.contains( input){
-        println!("yes");}
-    for input in words {
-        println!("{}", input);
-    }*/
-    //println!("{:?}", words);
+    }
 }
